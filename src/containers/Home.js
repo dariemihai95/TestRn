@@ -35,11 +35,12 @@ export default class Home extends React.Component {
   }
 
   render() {
+
     const {
       setData, clearData,
       state: { dataList }
     } = this;
-    console.log(dataList)
+
     return (
       <>
         <View>
