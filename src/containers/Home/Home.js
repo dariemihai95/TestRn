@@ -16,8 +16,8 @@ import {
 } from 'react-native';
 
 import { Colors } from 'react-native/Libraries/NewAppScreen';
-import { fetchData } from '../services/fetch';
-import { urls, cardKeys, messages, buttonText, generalText } from '../utils/constants';
+import { fetchData } from '../../services/fetch';
+import { urls, cardKeys, messages, buttonText, generalText } from '../../utils/constants';
 import { Card, Icon } from 'react-native-elements';
 
 export default class Home extends React.Component {
@@ -64,10 +64,15 @@ export default class Home extends React.Component {
     }
   }
 
+  navigateToDetails = (item) => {
+    const { props: { navigation } } = this;
+    navigation.navigate('Details', item)
+  }
+
   render() {
 
     const {
-      setData, clearData, sortByTitle,
+      setData, clearData, sortByTitle, navigateToDetails,
       state: { dataList, isLoading, isAscending }
     } = this;
 
@@ -90,14 +95,14 @@ export default class Home extends React.Component {
               >
                 {dataList.map((dataItem, index) => {
                   return (
-                    <View key={index}>
+                    <TouchableOpacity key={index} onPress={() => navigateToDetails(dataItem)}>
                       <Card containerStyle={{ padding: 5, borderRadius: 5 }} >
                         <Text style={styles.cardText}>{cardKeys.title}{dataItem.title}</Text>
                         <Text style={styles.cardText}>{cardKeys.artist}{dataItem.artist}</Text>
                         <Text style={styles.cardText}>{cardKeys.label}{dataItem.label}</Text>
                         <Text style={styles.cardText}>{cardKeys.year}{dataItem.year}</Text>
                       </Card>
-                    </View>
+                    </TouchableOpacity>
                   )
                 })}
                 <View style={{ marginBottom: 70 }} />
