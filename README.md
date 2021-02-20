@@ -2,8 +2,8 @@
 
 ## Requirements
 
-Android: 9+
-iOS: ? (Not tested)
+- Android: 9+
+- iOS: ? (Not tested)
 
 ## Install modules
 
@@ -38,5 +38,5 @@ yarn ios
 
 ## Project references
 
-navigation - @react-navigation - https://reactnative.dev/docs/navigation
-cards - react-native-elements - https://reactnativeelements.com/
+- navigation - @react-navigation - https://reactnative.dev/docs/navigation
+- cards - react-native-elements - https://reactnativeelements.com/
