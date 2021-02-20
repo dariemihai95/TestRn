@@ -17,7 +17,7 @@ import {
 
 import { Colors } from 'react-native/Libraries/NewAppScreen';
 import { fetchData } from '../services/fetch';
-import { urls } from '../utils/constants';
+import { urls, cardKeys, messages, buttonText, generalText } from '../utils/constants';
 import { Card, Icon } from 'react-native-elements';
 
 export default class Home extends React.Component {
@@ -74,15 +74,15 @@ export default class Home extends React.Component {
     return (
       <View style={{ backgroundColor: Colors.lighter }}>
         <TouchableOpacity
-          style={{ height: '3%', margin: 10, display: 'flex', flexDirection: 'row' }}
+          style={{ minHeight: 20, height: '3%', margin: 10, display: 'flex', flexDirection: 'row' }}
           onPress={sortByTitle}
         >
           <Icon name={isAscending ? 'arrow-down' : 'arrow-up' } type='feather' color='#000000' />
-          <Text>Order</Text>
+          <Text>{generalText.title}</Text>
         </TouchableOpacity>
         <View style={{ height: '95%' }}>
           {isLoading
-            ? <View style={styles.loadingContainer}><Text>Loading...</Text></View>
+            ? <View style={styles.loadingContainer}><Text>{messages.loading}</Text></View>
             : (
               <ScrollView
                 contentInsetAdjustmentBehavior="automatic"
@@ -92,10 +92,10 @@ export default class Home extends React.Component {
                   return (
                     <View key={index}>
                       <Card containerStyle={{ padding: 5, borderRadius: 5 }} >
-                        <Text style={styles.cardText}>title: {dataItem.title}</Text>
-                        <Text style={styles.cardText}>artist: {dataItem.artist}</Text>
-                        <Text style={styles.cardText}>label: {dataItem.label}</Text>
-                        <Text style={styles.cardText}>year: {dataItem.year}</Text>
+                        <Text style={styles.cardText}>{cardKeys.title}{dataItem.title}</Text>
+                        <Text style={styles.cardText}>{cardKeys.artist}{dataItem.artist}</Text>
+                        <Text style={styles.cardText}>{cardKeys.label}{dataItem.label}</Text>
+                        <Text style={styles.cardText}>{cardKeys.year}{dataItem.year}</Text>
                       </Card>
                     </View>
                   )
@@ -106,8 +106,8 @@ export default class Home extends React.Component {
         </View>
         <View style={styles.buttonsContainer}>
           <View style={styles.buttonsBar}>
-            <TouchableOpacity style={{ ...styles.button, backgroundColor: '#95e1d3' }} onPress={setData}><Text>Get</Text></TouchableOpacity>
-            <TouchableOpacity style={{ ...styles.button, backgroundColor: '#f38181' }} onPress={clearData}><Text>Clear</Text></TouchableOpacity>
+            <TouchableOpacity style={{ ...styles.button, backgroundColor: '#95e1d3' }} onPress={setData}><Text>{buttonText.get}</Text></TouchableOpacity>
+            <TouchableOpacity style={{ ...styles.button, backgroundColor: '#f38181' }} onPress={clearData}><Text>{buttonText.clear}</Text></TouchableOpacity>
           </View>
         </View>
       </View>
